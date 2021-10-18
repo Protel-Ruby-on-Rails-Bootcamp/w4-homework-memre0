@@ -1,0 +1,14 @@
+<header class="slidePanel-header bg-gray-800 overlay-top overlay-panel overlay-background padding-10 panel-heading">
+  <h4 class="font-size-h6 m-0 text-white panel-title padding-10"><%= title %></h4>
+  <div class="slidePanel-actions panel-actions padding-10" aria-label="actions" role="group">
+    <% if local_assigns[:link].present? %>
+      <%= link_to t("simple_form.labels.defaults.open_in_new_tab"), {controller: local_assigns[:link][:controller], action: local_assigns[:link][:action], id: local_assigns[:link][:id]}, target: :blank, class: "btn btn-sm btn-dark btn-hover-light-dark mr-3 padding-top-5 padding-bottom-5" %>
+    <% end %>
+    <button type="button" class="btn btn-xs btn-icon btn-danger btn-hover-light-danger btn-pure slidePanel-close padding-left-10 padding-right-10 text-white"><i class="far fa-times"></i></button>
+  </div>
+</header>
+<div class="slidePanel-inner">
+  <section class="slidePanel-inner-section">
+  	<%= slidercontent %>
+  </section>
+</div>

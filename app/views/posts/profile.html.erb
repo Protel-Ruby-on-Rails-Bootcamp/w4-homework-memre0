@@ -1,0 +1,17 @@
+
+
+<div id="post_content">
+	<p class="title">Name: <%= @user.email.split('@').first %></p>
+	<p class="title">Email: <%= @user.email %></p>
+
+	<p class="body">
+	
+	<% @user.posts.each do |post| %>
+		<div class="post_wrapper">
+			<p class="title"><%= link_to post.title, post %></p>
+			<p class="date"><%= post.created_at.strftime("%B %d, %Y") %></p>
+		</div>
+	<% end %>
+	</p>
+</div>
+
