@@ -1,1 +1,44 @@
-dasdasdas
+
+
+<div id="page_wrapper">
+	<div id="profile_image">
+		<%= image_tag "a.jpeg" %>
+	</div>
+
+	<div id="content">
+		<p>Name: <%= @user.email.split('@').first %></p>
+		<p>Name: <%= @user.email %></p>
+		<p>Joined at <%= @user.created_at.strftime("%B %d, %Y") %></p>
+  
+			<%= link_to 'edit', edit_user_registration_path(@user), class: "button"  if @my_profile = true %> </p>
+	</div>
+</div>
+
+<div id="page_wrapper">
+	<div id="content">
+		<div class="post_wrapper">
+			<h1 class="title"></h1>
+		</div>
+		<div class="post_wrapper">
+			<h1 class="title">Posts</h1>
+		</div>
+		<% @posts.each do |post| %>
+			<div class="post_wrapper">
+				<p class="title"><%= link_to post.title, post %></p>
+				<p class="date"><%= post.created_at.strftime("%B %d, %Y") %></p>
+			</div>
+		<% end %>
+		<div class="post_wrapper">
+			<h1 class="title">Comments</h1>
+		</div>
+		<% @comments.each do |comment| %>
+			<div class="post_wrapper" id="comment_<% comment.id %>">
+				<p class="title">Name: <%= comment.name %></p>
+				<p class="title">Post Name: <%= comment.post.title %></p>
+				<p class="title">Status: <%= comment.status %></p>
+				<p class="date">Created at: <%= comment.created_at.strftime("%B %d, %Y") %></p>
+				<p><%= link_to 'Delete', [comment.post, comment], method: :delete, remote: true, class: "button", data: { confirm: 'Are you sure?' } if my_comment?(current_user, comment.user_id) || my_post(current_user, comment.post.user_id) %>
+			</div>
+		<% end %>
+	</div>	
+</div>

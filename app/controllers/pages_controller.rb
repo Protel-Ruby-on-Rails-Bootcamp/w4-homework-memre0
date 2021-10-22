@@ -1,11 +1,8 @@
 class PagesController < ApplicationController
   
   def about
-  end
-
-  def profile
-    p "params[:id] ====== #{params[:aid]}"
-    post = Post.find(params[:id])
-    @user = User.find(post.user_id)
+    @user = User.find(current_user.id)
+    @posts = Post.where(user_id: @user.id)
+    @comments = Comment.where(user_id: @user.id)
   end
 end

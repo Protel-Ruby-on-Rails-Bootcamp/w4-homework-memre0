@@ -1,7 +1,19 @@
 class ApplicationJob < ActiveJob::Base
-  # Automatically retry jobs that encountered a deadlock
-  # retry_on ActiveRecord::Deadlocked
 
-  # Most jobs are safe to ignore if the underlying records are no longer available
-  # discard_on ActiveJob::DeserializationError
+  def perform(action_type)
+
+    case action_type
+    when "check_comment_status"
+      check_comment_status
+    end
+  end
+
+  private
+
+  def check_comment_status
+    comments.all
+    comments.each do |comment|
+      comment.status = true if !comment_time_past?(comment)
+    end
+  end
 end

@@ -1,19 +1,21 @@
 <div id="post_content">
 	<h1 class="title"><%= @post.title %></h1>
 	<p class="date">
-	<%= link_to @post.user.email.split('@').first, profile_post_path(@post) %>	Submitted <%= time_ago_in_words(@post.created_at) %> Ago
+	<%= link_to @post.user.email.split('@').first, user_path(@post.user) %>	Submitted <%= time_ago_in_words(@post.created_at) %> Ago
 		<% if user_signed_in? && my_post(current_user, @post.user_id)%>
 		| <%= link_to 'Edit', edit_post_path(@post) %> |
 		  <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
 	 |	<%= link_to 'Manage Comments', manage_comment_post_comment_path(post_id: @post) %>
 	  <% end %>
 	</p>
-	<p class="body"><%= @post.body %></p>
-
+	<div id="content">
+		<p class="body"><%= @post.body %></p>
+	</div>
 	<div id="comments">
-		<div><h2><%= @post.comments.count %> Comments</h2></div>
+		<div id="comment_count"><h2><%= @post.comments.count %> Comments</h2></div>
 		<%= render @post.comments %>
-
+	</div>
+	<div id="comments_form">
 		<h3>Add a comment:</h3>
 		<%= render "comments/form" %>
 	</div>

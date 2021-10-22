@@ -9,6 +9,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users do
+    get :feed, on: :collection
+  end
+
+  resources :relationships, only: [:create, :destroy]
+
   root "posts#index"
 
   get '/about', to: 'pages#about'

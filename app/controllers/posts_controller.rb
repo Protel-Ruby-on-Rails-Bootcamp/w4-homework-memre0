@@ -47,6 +47,11 @@ class PostsController < ApplicationController
 
 	def profile
 		set_post
+		@posts = Post.where(user_id: @post.user_id, visible: true)
+
+		@posts = Post.where(user_id: @post.user_id) if @post.user_id == current_user.id
+		@my_profile = true if @post.user_id == current_user.id
+
 		@user = User.find(@post.user_id)
 
 	end

@@ -1,0 +1,9 @@
+<div id="profile">
+		<h1 class="title"><%= user.name %></h1>
+		<p class="date">
+			Joined <%= user.created_at %>
+			<% if user_signed_in? %>
+				<%= render "pages/profile_content" %>
+			<% end %>
+		</p>
+	</div>

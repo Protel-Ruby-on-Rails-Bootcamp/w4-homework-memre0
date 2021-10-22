@@ -1,0 +1,39 @@
+
+
+<div id="page_wrapper">
+	<div id="profile_image">
+		<%= image_tag "a.jpeg" %>
+	</div>
+
+	<div id="content">
+		<p>Name: <%= @user.email.split('@').first %></p>
+		<p>Name: <%= @user.email %></p>
+		<p>Joined at <%= @user.created_at.strftime("%B %d, %Y") %></p>
+
+		<div id="followers">
+			<b>Following(<%= @user.following.count %>)</b>
+			<b>Follower(<%= @user.followers.count %>)</b>
+		</div>
+
+		<% if user_signed_in? && @user != current_user %>
+			<p><%= render 'follow_form' %></p>
+		<% end %>
+	</div>
+</div>
+
+<div id="page_wrapper">
+	<div id="content">
+		<div class="post_wrapper">
+			<h1 class="title"></h1>
+		</div>
+		<div class="post_wrapper">
+			<h1 class="title">Posts</h1>
+		</div>
+		<% @posts.each do |post| %>
+			<div class="post_wrapper">
+				<p class="title"><%= link_to post.title, post %></p>
+				<p class="date"><%= post.created_at.strftime("%B %d, %Y") %></p>
+			</div>
+		<% end %>
+	</div>	
+</div>

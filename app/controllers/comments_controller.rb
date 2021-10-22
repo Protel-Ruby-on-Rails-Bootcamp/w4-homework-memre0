@@ -4,7 +4,11 @@ class CommentsController < ApplicationController
 		@comment = @post.comments.new(comment_params)
 		@comment.user_id = current_user.id
 		@comment.save
-		redirect_to post_path(@post)
+		
+		respond_to do |format|
+      format.html { redirect_to post_path(@post) }
+      format.js
+    end
 	end
 
 
@@ -13,7 +17,11 @@ class CommentsController < ApplicationController
 		@comment = @post.comments.find(params[:id])
 		@comment.destroy!
 
-		redirect_to post_path(@post)
+		respond_to do |format|
+      format.html { redirect_to post_path(@post) }
+      format.js
+    end
+		
 	end
 
 	def change_status

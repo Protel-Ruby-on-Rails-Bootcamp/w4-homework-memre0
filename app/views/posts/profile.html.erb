@@ -1,17 +1,40 @@
 
 
-<div id="post_content">
-	<p class="title">Name: <%= @user.email.split('@').first %></p>
-	<p class="title">Email: <%= @user.email %></p>
+<div id="page_wrapper">
+	<div id="profile_image">
+		<%= image_tag "a.jpeg" %>
+	</div>
 
-	<p class="body">
-	
-	<% @user.posts.each do |post| %>
-		<div class="post_wrapper">
-			<p class="title"><%= link_to post.title, post %></p>
-			<p class="date"><%= post.created_at.strftime("%B %d, %Y") %></p>
+	<div id="content">
+		<p>Name: <%= @user.email.split('@').first %></p>
+		<p>Name: <%= @user.email %></p>
+		<p>Joined at <%= @user.created_at.strftime("%B %d, %Y") %></p>
+
+			<div id='followers'>
+			<b>Following(<%= @user.following.count %>)</b>
+			<b>Follower(<%= @user.followers.count %>)</b>
 		</div>
-	<% end %>
-	</p>
+
+		<% if user_signed_in? && @user == current_user %>
+			<p><%= render 'users/follow_form' %></p>
+		<% end %>   
+			<%= link_to 'edit', edit_user_registration_path(@user), class: "button"  if @my_profile = true %> </p>
+	</div>
 </div>
 
+<div id="page_wrapper">
+	<div id="content">
+		<div class="post_wrapper">
+			<h1 class="title"></h1>
+		</div>
+		<div class="post_wrapper">
+			<h1 class="title">Posts</h1>
+		</div>
+		<% @posts.each do |post| %>
+			<div class="post_wrapper">
+				<p class="title"><%= link_to post.title, post %></p>
+				<p class="date"><%= post.created_at.strftime("%B %d, %Y") %></p>
+			</div>
+		<% end %>
+	</div>	
+</div>
