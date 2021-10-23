@@ -8,6 +8,6 @@ module ApplicationHelper
   end
 
   def comment_time_past?(comment)
-    comment.created_at > (2.day)
+    (Time.now - (2.day)) > comment.created_at
   end
 end
