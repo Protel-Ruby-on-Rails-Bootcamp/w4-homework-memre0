@@ -14,6 +14,7 @@ class ApplicationJob < ActiveJob::Base
     comments.all
     comments.each do |comment|
       comment.status = true if !comment_time_past?(comment)
+      comment.save
     end
   end
 end
