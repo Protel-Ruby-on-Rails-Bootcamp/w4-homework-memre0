@@ -11,7 +11,7 @@ class ApplicationJob < ActiveJob::Base
   private
 
   def check_comment_status
-    comments.all
+    comments = Comment.all
     comments.each do |comment|
       comment.status = true if !comment_time_past?(comment)
       comment.save

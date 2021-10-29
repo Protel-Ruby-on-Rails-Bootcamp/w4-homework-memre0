@@ -4,7 +4,7 @@
 		<p class="date">
 			Submitted <%= time_ago_in_words(comment.created_at) %> Ago
 			<% if user_signed_in? %>
-				<p><%= link_to 'Delete', [comment.post, comment], method: :delete, class: "button", data: { confirm: 'Are you sure?' } if my_comment?(current_user, comment.user_id) || my_post(current_user, comment.post.user_id)%>
+				<p>
 				<% if comment.status == "accepted" %>
 					<%= link_to 'Deny', change_status_post_comment_path(comment.post, comment, status: "denied"), method: :patch, class: "button" if my_comment?(current_user, comment.user_id) && comment_time_past?(comment) %>
 				<% else  %>								

@@ -18533,3 +18533,594 @@ Processing by CommentsController#destroy as JS
 Completed 200 OK in 22ms (Views: 6.1ms | ActiveRecord: 4.5ms | Allocations: 5074)
 
 
+Started GET "/" for ::1 at 2021-10-29 18:22:11 +0300
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  Rendered posts/index.html.erb within layouts/application (Duration: 7.0ms | Allocations: 401)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 80.4ms | Allocations: 9066)
+Completed 200 OK in 176ms (Views: 93.7ms | ActiveRecord: 48.3ms | Allocations: 13764)
+
+
+Started GET "/users/sign_in" for ::1 at 2021-10-29 18:22:14 +0300
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 3.0ms | Allocations: 602)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 43.0ms | Allocations: 4705)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 52.6ms | Allocations: 8871)
+Completed 200 OK in 123ms (Views: 56.5ms | ActiveRecord: 55.1ms | Allocations: 14410)
+
+
+Started POST "/users/sign_in" for ::1 at 2021-10-29 18:22:24 +0300
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"emre@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (46.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "emre@gmail.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 366ms (ActiveRecord: 46.2ms | Allocations: 4758)
+
+
+Started GET "/" for ::1 at 2021-10-29 18:22:25 +0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:1
+  [1m[36mPost Load (5.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 ORDER BY created_at DESC[0m  [["status", true]]
+  ↳ app/views/posts/index.html.erb:2
+  Rendered posts/index.html.erb within layouts/application (Duration: 27.8ms | Allocations: 4844)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 49.6ms | Allocations: 13086)
+Completed 500 Internal Server Error in 55ms (ActiveRecord: 9.4ms | Allocations: 13524)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `feed_user_path' for #<ActionView::Base:0x0000000000a9b0>
+Did you mean?  feed_users_path
+               edit_user_path):
+    20: <% if user_signed_in? %>
+    21: 		<ul>
+    22: 			<li class="category">Website</li>
+    23: 			<li><%= link_to "Blog", feed_user_path %></li>
+    24: 			<li><%= link_to "Profile", about_path %></li>
+    25: 		</ul>
+    26: <% end %>
+  
+app/views/layouts/application.html.erb:23
+Started GET "/" for ::1 at 2021-10-29 18:22:48 +0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:1
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 ORDER BY created_at DESC[0m  [["status", true]]
+  ↳ app/views/posts/index.html.erb:2
+  Rendered posts/index.html.erb within layouts/application (Duration: 6.1ms | Allocations: 2019)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 17.7ms | Allocations: 6895)
+Completed 200 OK in 23ms (Views: 19.9ms | ActiveRecord: 0.7ms | Allocations: 8322)
+
+
+Started GET "/users/feed" for ::1 at 2021-10-29 18:22:55 +0300
+Processing by UsersController#feed as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (43.5ms)[0m  [1m[34mSELECT "users"."id" FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = $1[0m  [["follower_id", 1]]
+  ↳ app/models/user.rb:31:in `feed'
+  Rendering layout layouts/application.html.erb
+  Rendering users/feed.html.erb within layouts/application
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (user_id IN (NULL)) AND "posts"."status" = $1[0m  [["status", true]]
+  ↳ app/views/users/feed.html.erb:2
+  Rendered users/feed.html.erb within layouts/application (Duration: 3.6ms | Allocations: 880)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 18.7ms | Allocations: 4950)
+Completed 200 OK in 128ms (Views: 23.9ms | ActiveRecord: 46.7ms | Allocations: 13758)
+
+
+Started GET "/" for ::1 at 2021-10-29 18:22:57 +0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:1
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 ORDER BY created_at DESC[0m  [["status", true]]
+  ↳ app/views/posts/index.html.erb:2
+  Rendered posts/index.html.erb within layouts/application (Duration: 7.0ms | Allocations: 1720)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 15.8ms | Allocations: 5817)
+Completed 200 OK in 31ms (Views: 15.9ms | ActiveRecord: 0.9ms | Allocations: 6847)
+
+
+Started GET "/users/feed" for ::1 at 2021-10-29 18:22:58 +0300
+Processing by UsersController#feed as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "users"."id" FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = $1[0m  [["follower_id", 1]]
+  ↳ app/models/user.rb:31:in `feed'
+  Rendering layout layouts/application.html.erb
+  Rendering users/feed.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (user_id IN (NULL)) AND "posts"."status" = $1[0m  [["status", true]]
+  ↳ app/views/users/feed.html.erb:2
+  Rendered users/feed.html.erb within layouts/application (Duration: 2.3ms | Allocations: 713)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 11.4ms | Allocations: 4834)
+Completed 200 OK in 28ms (Views: 11.7ms | ActiveRecord: 1.3ms | Allocations: 7340)
+
+
+Started GET "/" for ::1 at 2021-10-29 18:23:02 +0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mUser Load (8.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:1
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 ORDER BY created_at DESC[0m  [["status", true]]
+  ↳ app/views/posts/index.html.erb:2
+  Rendered posts/index.html.erb within layouts/application (Duration: 16.4ms | Allocations: 1855)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 31.4ms | Allocations: 5937)
+Completed 200 OK in 36ms (Views: 24.1ms | ActiveRecord: 8.4ms | Allocations: 6878)
+
+
+Started GET "/about" for ::1 at 2021-10-29 18:23:03 +0300
+Processing by PagesController#about as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/pages_controller.rb:4:in `about'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/pages_controller.rb:4:in `about'
+  Rendering layout layouts/application.html.erb
+  Rendering pages/about.html.erb within layouts/application
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/pages/about.html.erb:25
+  [1m[36mComment Load (45.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/pages/about.html.erb:34
+  [1m[36mPost Load (18.9ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/pages/about.html.erb:37
+  Rendered pages/about.html.erb within layouts/application (Duration: 96.4ms | Allocations: 6924)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 107.1ms | Allocations: 10933)
+Completed 200 OK in 120ms (Views: 41.6ms | ActiveRecord: 68.8ms | Allocations: 14364)
+
+
+Started GET "/users/feed" for ::1 at 2021-10-29 18:23:05 +0300
+Processing by UsersController#feed as HTML
+  [1m[36mUser Load (6.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "users"."id" FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = $1[0m  [["follower_id", 1]]
+  ↳ app/models/user.rb:31:in `feed'
+  Rendering layout layouts/application.html.erb
+  Rendering users/feed.html.erb within layouts/application
+  [1m[36mPost Load (0.5ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (user_id IN (NULL)) AND "posts"."status" = $1[0m  [["status", true]]
+  ↳ app/views/users/feed.html.erb:2
+  Rendered users/feed.html.erb within layouts/application (Duration: 2.2ms | Allocations: 714)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 12.3ms | Allocations: 4847)
+Completed 200 OK in 32ms (Views: 12.4ms | ActiveRecord: 7.3ms | Allocations: 7992)
+
+
+Started GET "/" for ::1 at 2021-10-29 18:23:08 +0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:1
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 ORDER BY created_at DESC[0m  [["status", true]]
+  ↳ app/views/posts/index.html.erb:2
+  Rendered posts/index.html.erb within layouts/application (Duration: 6.9ms | Allocations: 1720)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 13.7ms | Allocations: 5810)
+Completed 200 OK in 16ms (Views: 13.7ms | ActiveRecord: 0.6ms | Allocations: 6268)
+
+
+Started GET "/posts/1" for ::1 at 2021-10-29 18:23:10 +0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:62:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:4
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:5
+  [1m[35m (47.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/views/posts/show.html.erb:15
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/views/posts/show.html.erb:16
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 2.2ms | Allocations: 229)
+  Rendered comments/_form.html.erb (Duration: 6.2ms | Allocations: 1139)
+  Rendered posts/show.html.erb within layouts/application (Duration: 79.8ms | Allocations: 7322)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 87.0ms | Allocations: 11351)
+Completed 200 OK in 92ms (Views: 39.4ms | ActiveRecord: 48.5ms | Allocations: 12542)
+
+
+Started GET "/users/1" for ::1 at 2021-10-29 18:23:12 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = $1[0m  [["follower_id", 1]]
+  ↳ app/views/users/show.html.erb:14
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."followed_id" = $1[0m  [["followed_id", 1]]
+  ↳ app/views/users/show.html.erb:15
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."user_id" = $1 AND "posts"."status" = $2[0m  [["user_id", 1], ["status", true]]
+  ↳ app/views/users/show.html.erb:32
+  Rendered users/show.html.erb within layouts/application (Duration: 11.8ms | Allocations: 3221)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 19.0ms | Allocations: 7341)
+Completed 200 OK in 25ms (Views: 18.4ms | ActiveRecord: 1.8ms | Allocations: 9589)
+
+
+Started GET "/" for ::1 at 2021-10-29 18:23:14 +0300
+Processing by PostsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering posts/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/index.html.erb:1
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."status" = $1 ORDER BY created_at DESC[0m  [["status", true]]
+  ↳ app/views/posts/index.html.erb:2
+  Rendered posts/index.html.erb within layouts/application (Duration: 6.4ms | Allocations: 1722)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 13.9ms | Allocations: 5819)
+Completed 200 OK in 39ms (Views: 14.3ms | ActiveRecord: 0.6ms | Allocations: 6917)
+
+
+Started GET "/posts/2" for ::1 at 2021-10-29 18:23:16 +0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:62:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:4
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:5
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:15
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 2]]
+  ↳ app/views/posts/show.html.erb:16
+  Rendered collection of templates [0 times] (Duration: 0.0ms | Allocations: 11)
+  Rendered comments/_form.html.erb (Duration: 1.4ms | Allocations: 725)
+  Rendered posts/show.html.erb within layouts/application (Duration: 12.3ms | Allocations: 4199)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 19.1ms | Allocations: 8318)
+Completed 200 OK in 22ms (Views: 17.9ms | ActiveRecord: 2.0ms | Allocations: 9284)
+
+
+Started GET "/users/2" for ::1 at 2021-10-29 18:23:17 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = $1[0m  [["follower_id", 2]]
+  ↳ app/views/users/show.html.erb:14
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."followed_id" = $1[0m  [["followed_id", 2]]
+  ↳ app/views/users/show.html.erb:15
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = $1 AND "users"."id" = $2 LIMIT $3[0m  [["follower_id", 1], ["id", 2], ["LIMIT", 1]]
+  ↳ app/models/user.rb:27:in `following?'
+  Rendered users/_follow.html.erb (Duration: 8.4ms | Allocations: 2559)
+  Rendered users/_follow_form.html.erb (Duration: 14.3ms | Allocations: 4070)
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."user_id" = $1 AND "posts"."status" = $2[0m  [["user_id", 2], ["status", true]]
+  ↳ app/views/users/show.html.erb:32
+  Rendered users/show.html.erb within layouts/application (Duration: 24.0ms | Allocations: 7138)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 31.7ms | Allocations: 11256)
+Completed 200 OK in 38ms (Views: 29.0ms | ActiveRecord: 3.9ms | Allocations: 13384)
+
+
+Started POST "/relationships" for ::1 at 2021-10-29 18:23:18 +0300
+Processing by RelationshipsController#create as JS
+  Parameters: {"authenticity_token"=>"[FILTERED]", "followed_id"=>"2", "commit"=>"Follow"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/relationships_controller.rb:5:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/user.rb:17:in `follow'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/models/user.rb:17:in `follow'
+  [1m[36mRelationship Create (48.4ms)[0m  [1m[32mINSERT INTO "relationships" ("follower_id", "followed_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["follower_id", 1], ["followed_id", 2], ["created_at", "2021-10-29 15:23:18.803465"], ["updated_at", "2021-10-29 15:23:18.803465"]]
+  ↳ app/models/user.rb:17:in `follow'
+  [1m[36mTRANSACTION (2.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/user.rb:17:in `follow'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = $1 /* loading for inspect */ LIMIT $2[0m  [["follower_id", 1], ["LIMIT", 11]]
+  ↳ app/models/user.rb:19:in `p'
+  Rendering relationships/create.js.erb
+  [1m[36mRelationship Load (0.3ms)[0m  [1m[34mSELECT "relationships".* FROM "relationships" WHERE "relationships"."follower_id" = $1 AND "relationships"."followed_id" = $2 LIMIT $3[0m  [["follower_id", 1], ["followed_id", 2], ["LIMIT", 1]]
+  ↳ app/views/users/_unfollow.html.erb:1
+  Rendered users/_unfollow.html.erb (Duration: 6.2ms | Allocations: 1214)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = $1[0m  [["follower_id", 2]]
+  ↳ app/views/relationships/create.js.erb:2
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."followed_id" = $1[0m  [["followed_id", 2]]
+  ↳ app/views/relationships/create.js.erb:2
+  Rendered relationships/create.js.erb (Duration: 14.1ms | Allocations: 3658)
+Completed 200 OK in 91ms (Views: 16.5ms | ActiveRecord: 53.1ms | Allocations: 12629)
+
+
+Started GET "/users/feed" for ::1 at 2021-10-29 18:23:19 +0300
+Processing by UsersController#feed as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "users"."id" FROM "users" INNER JOIN "relationships" ON "users"."id" = "relationships"."followed_id" WHERE "relationships"."follower_id" = $1[0m  [["follower_id", 1]]
+  ↳ app/models/user.rb:31:in `feed'
+  Rendering layout layouts/application.html.erb
+  Rendering users/feed.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE (user_id IN (2)) AND "posts"."status" = $1[0m  [["status", true]]
+  ↳ app/views/users/feed.html.erb:2
+  Rendered users/feed.html.erb within layouts/application (Duration: 2.4ms | Allocations: 783)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | Allocations: 4903)
+Completed 200 OK in 21ms (Views: 12.9ms | ActiveRecord: 0.9ms | Allocations: 7412)
+
+
+Started GET "/about" for ::1 at 2021-10-29 18:23:27 +0300
+Processing by PagesController#about as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/pages_controller.rb:4:in `about'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/pages_controller.rb:4:in `about'
+  Rendering layout layouts/application.html.erb
+  Rendering pages/about.html.erb within layouts/application
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/pages/about.html.erb:25
+  [1m[36mComment Load (1.1ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/pages/about.html.erb:34
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/pages/about.html.erb:37
+  Rendered pages/about.html.erb within layouts/application (Duration: 11.5ms | Allocations: 2438)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 18.7ms | Allocations: 6544)
+Completed 200 OK in 30ms (Views: 17.6ms | ActiveRecord: 2.5ms | Allocations: 8378)
+
+
+Started GET "/posts/1" for ::1 at 2021-10-29 18:24:01 +0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:62:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:4
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:5
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/views/posts/show.html.erb:15
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/views/posts/show.html.erb:16
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 0.6ms | Allocations: 219)
+  Rendered comments/_form.html.erb (Duration: 1.8ms | Allocations: 889)
+  Rendered posts/show.html.erb within layouts/application (Duration: 16.4ms | Allocations: 5244)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 25.7ms | Allocations: 9985)
+Completed 200 OK in 35ms (Views: 29.2ms | ActiveRecord: 1.7ms | Allocations: 11755)
+
+
+Started GET "/posts/1/comments/1/manage_comment" for ::1 at 2021-10-29 18:24:02 +0300
+Processing by CommentsController#manage_comment as HTML
+  Parameters: {"post_id"=>"1", "id"=>"1"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:37:in `manage_comment'
+  Rendering layout layouts/application.html.erb
+  Rendering comments/manage_comment.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/views/comments/manage_comment.html.erb:1
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/comments/manage_comment.html.erb:6
+  Rendered comments/manage_comment.html.erb within layouts/application (Duration: 14.4ms | Allocations: 2161)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 25.6ms | Allocations: 6251)
+Completed 200 OK in 31ms (Views: 26.9ms | ActiveRecord: 0.9ms | Allocations: 7797)
+
+
+Started PATCH "/posts/1/comments/4/change_status?status=accepted" for ::1 at 2021-10-29 18:24:03 +0300
+Processing by CommentsController#change_status as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "status"=>"accepted", "post_id"=>"1", "id"=>"4"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:28:in `change_status'
+  [1m[36mComment Load (1.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 AND "comments"."id" = $2 LIMIT $3[0m  [["post_id", 1], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:29:in `change_status'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/comments_controller.rb:31:in `change_status'
+  [1m[36mComment Update (4.8ms)[0m  [1m[33mUPDATE "comments" SET "updated_at" = $1, "status" = $2 WHERE "comments"."id" = $3[0m  [["updated_at", "2021-10-29 15:24:03.925371"], ["status", "accepted"], ["id", 4]]
+  ↳ app/controllers/comments_controller.rb:31:in `change_status'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/comments_controller.rb:31:in `change_status'
+Redirected to http://localhost:3000/posts/1
+Completed 302 Found in 22ms (ActiveRecord: 8.2ms | Allocations: 3857)
+
+
+Started GET "/posts/1" for ::1 at 2021-10-29 18:24:03 +0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:62:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:4
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:5
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/views/posts/show.html.erb:15
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/views/posts/show.html.erb:16
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 0.4ms | Allocations: 140)
+  Rendered comments/_form.html.erb (Duration: 1.7ms | Allocations: 725)
+  Rendered posts/show.html.erb within layouts/application (Duration: 15.2ms | Allocations: 4486)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 23.4ms | Allocations: 8620)
+Completed 200 OK in 27ms (Views: 22.5ms | ActiveRecord: 1.7ms | Allocations: 9585)
+
+
+Started GET "/posts/1/comments/1/manage_comment" for ::1 at 2021-10-29 18:24:10 +0300
+Processing by CommentsController#manage_comment as HTML
+  Parameters: {"post_id"=>"1", "id"=>"1"}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:37:in `manage_comment'
+  Rendering layout layouts/application.html.erb
+  Rendering comments/manage_comment.html.erb within layouts/application
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/views/comments/manage_comment.html.erb:1
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/comments/manage_comment.html.erb:6
+  Rendered comments/manage_comment.html.erb within layouts/application (Duration: 5.7ms | Allocations: 1894)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 13.9ms | Allocations: 6008)
+Completed 200 OK in 18ms (Views: 13.8ms | ActiveRecord: 0.9ms | Allocations: 6970)
+
+
+Started PATCH "/posts/1/comments/4/change_status?status=denied" for ::1 at 2021-10-29 18:24:11 +0300
+Processing by CommentsController#change_status as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "status"=>"denied", "post_id"=>"1", "id"=>"4"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:28:in `change_status'
+  [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1 AND "comments"."id" = $2 LIMIT $3[0m  [["post_id", 1], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:29:in `change_status'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/comments_controller.rb:31:in `change_status'
+  [1m[36mComment Update (0.6ms)[0m  [1m[33mUPDATE "comments" SET "updated_at" = $1, "status" = $2 WHERE "comments"."id" = $3[0m  [["updated_at", "2021-10-29 15:24:11.150508"], ["status", "denied"], ["id", 4]]
+  ↳ app/controllers/comments_controller.rb:31:in `change_status'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/comments_controller.rb:31:in `change_status'
+Redirected to http://localhost:3000/posts/1
+Completed 302 Found in 14ms (ActiveRecord: 2.6ms | Allocations: 3768)
+
+
+Started GET "/posts/1" for ::1 at 2021-10-29 18:24:11 +0300
+Processing by PostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:62:in `set_post'
+  Rendering layout layouts/application.html.erb
+  Rendering posts/show.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:4
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/posts/show.html.erb:5
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/views/posts/show.html.erb:15
+  [1m[36mComment Load (0.2ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."post_id" = $1[0m  [["post_id", 1]]
+  ↳ app/views/posts/show.html.erb:16
+  Rendered collection of comments/_comment.html.erb [1 times] (Duration: 0.2ms | Allocations: 79)
+  Rendered comments/_form.html.erb (Duration: 2.2ms | Allocations: 722)
+  Rendered posts/show.html.erb within layouts/application (Duration: 12.7ms | Allocations: 4410)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layout layouts/application.html.erb (Duration: 19.9ms | Allocations: 8522)
+Completed 200 OK in 23ms (Views: 19.3ms | ActiveRecord: 1.2ms | Allocations: 9485)
+
+
+[ActiveJob] Enqueued ApplicationJob (Job ID: ad6fa2e6-e2e3-41be-aa56-2a434ec11d14) to Async(default) with arguments: "check_comment_status"
+[ActiveJob] [ApplicationJob] [ad6fa2e6-e2e3-41be-aa56-2a434ec11d14] Performing ApplicationJob (Job ID: ad6fa2e6-e2e3-41be-aa56-2a434ec11d14) from Async(default) enqueued at 2021-10-29T15:26:27Z with arguments: "check_comment_status"
+[ActiveJob] [ApplicationJob] [ad6fa2e6-e2e3-41be-aa56-2a434ec11d14] Error performing ApplicationJob (Job ID: ad6fa2e6-e2e3-41be-aa56-2a434ec11d14) from Async(default) in 17.91ms: NameError (undefined local variable or method `comments' for #<ApplicationJob:0x00007fd4e93e6f00>):
+/Users/memre/projects/final/w4-homework-memre0/app/jobs/application_job.rb:14:in `check_comment_status'
+/Users/memre/projects/final/w4-homework-memre0/app/jobs/application_job.rb:7:in `perform'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/execution.rb:48:in `block in perform_now'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:117:in `block in run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/i18n-1.8.9/lib/i18n.rb:314:in `with_locale'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `instance_exec'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/core_ext/time/zones.rb:66:in `use_zone'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/timezones.rb:9:in `block (2 levels) in <module:Timezones>'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `instance_exec'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/instrumentation.rb:21:in `block in instrument'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/notifications.rb:203:in `block in instrument'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/notifications.rb:203:in `instrument'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/instrumentation.rb:31:in `instrument'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/instrumentation.rb:14:in `block (2 levels) in <module:Instrumentation>'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `instance_exec'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/logging.rb:22:in `block in tag_logger'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/tagged_logging.rb:99:in `block in tagged'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/tagged_logging.rb:37:in `tagged'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/tagged_logging.rb:99:in `tagged'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/logging.rb:22:in `tag_logger'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/logging.rb:15:in `block (2 levels) in <module:Logging>'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `instance_exec'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:137:in `run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/execution.rb:47:in `perform_now'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/execution.rb:25:in `block in execute'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:117:in `block in run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/railtie.rb:47:in `block (4 levels) in <class:Railtie>'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/execution_wrapper.rb:88:in `wrap'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/reloader.rb:72:in `block in wrap'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/execution_wrapper.rb:88:in `wrap'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/reloader.rb:71:in `wrap'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/railtie.rb:46:in `block (3 levels) in <class:Railtie>'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `instance_exec'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:137:in `run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/execution.rb:23:in `execute'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/queue_adapters/async_adapter.rb:70:in `perform'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/concurrent-ruby-1.1.8/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:363:in `run_task'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/concurrent-ruby-1.1.8/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:352:in `block (3 levels) in create_worker'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/concurrent-ruby-1.1.8/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:335:in `loop'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/concurrent-ruby-1.1.8/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:335:in `block (2 levels) in create_worker'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/concurrent-ruby-1.1.8/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `catch'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/concurrent-ruby-1.1.8/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `block in create_worker'
+  [1m[36mComment Load (0.5ms)[0m  [1m[34mSELECT "comments".* FROM "comments" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+[ActiveJob] Enqueued ApplicationJob (Job ID: 7317094b-2db9-44d2-8cf0-18f7074dce26) to Async(default) with arguments: "check_comment_status"
+[ActiveJob] [ApplicationJob] [7317094b-2db9-44d2-8cf0-18f7074dce26] Performing ApplicationJob (Job ID: 7317094b-2db9-44d2-8cf0-18f7074dce26) from Async(default) enqueued at 2021-10-29T15:27:44Z with arguments: "check_comment_status"
+[ActiveJob] [ApplicationJob] [7317094b-2db9-44d2-8cf0-18f7074dce26]   [1m[36mComment Load (0.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+[ActiveJob] [ApplicationJob] [7317094b-2db9-44d2-8cf0-18f7074dce26] Error performing ApplicationJob (Job ID: 7317094b-2db9-44d2-8cf0-18f7074dce26) from Async(default) in 14.09ms: NoMethodError (undefined method `comment_time_past?' for #<ApplicationJob:0x00007fd4e9285d50>):
+/Users/memre/projects/final/w4-homework-memre0/app/jobs/application_job.rb:16:in `block in check_comment_status'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activerecord-6.1.3/lib/active_record/relation/delegation.rb:88:in `each'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activerecord-6.1.3/lib/active_record/relation/delegation.rb:88:in `each'
+/Users/memre/projects/final/w4-homework-memre0/app/jobs/application_job.rb:15:in `check_comment_status'
+/Users/memre/projects/final/w4-homework-memre0/app/jobs/application_job.rb:7:in `perform'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/execution.rb:48:in `block in perform_now'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:117:in `block in run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/i18n-1.8.9/lib/i18n.rb:314:in `with_locale'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/translation.rb:9:in `block (2 levels) in <module:Translation>'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `instance_exec'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/core_ext/time/zones.rb:66:in `use_zone'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/timezones.rb:9:in `block (2 levels) in <module:Timezones>'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `instance_exec'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/instrumentation.rb:21:in `block in instrument'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/notifications.rb:203:in `block in instrument'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/notifications/instrumenter.rb:24:in `instrument'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/notifications.rb:203:in `instrument'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/instrumentation.rb:31:in `instrument'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/instrumentation.rb:14:in `block (2 levels) in <module:Instrumentation>'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `instance_exec'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/logging.rb:22:in `block in tag_logger'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/tagged_logging.rb:99:in `block in tagged'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/tagged_logging.rb:37:in `tagged'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/tagged_logging.rb:99:in `tagged'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/logging.rb:22:in `tag_logger'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/logging.rb:15:in `block (2 levels) in <module:Logging>'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `instance_exec'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:137:in `run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/execution.rb:47:in `perform_now'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/execution.rb:25:in `block in execute'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:117:in `block in run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/railtie.rb:47:in `block (4 levels) in <class:Railtie>'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/execution_wrapper.rb:88:in `wrap'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/reloader.rb:72:in `block in wrap'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/execution_wrapper.rb:88:in `wrap'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/reloader.rb:71:in `wrap'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/railtie.rb:46:in `block (3 levels) in <class:Railtie>'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `instance_exec'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:126:in `block in run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activesupport-6.1.3/lib/active_support/callbacks.rb:137:in `run_callbacks'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/execution.rb:23:in `execute'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/activejob-6.1.3/lib/active_job/queue_adapters/async_adapter.rb:70:in `perform'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/concurrent-ruby-1.1.8/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:363:in `run_task'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/concurrent-ruby-1.1.8/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:352:in `block (3 levels) in create_worker'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/concurrent-ruby-1.1.8/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:335:in `loop'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/concurrent-ruby-1.1.8/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:335:in `block (2 levels) in create_worker'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/concurrent-ruby-1.1.8/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `catch'
+/Users/memre/.rbenv/versions/2.7.3/lib/ruby/gems/2.7.0/gems/concurrent-ruby-1.1.8/lib/concurrent-ruby/concurrent/executor/ruby_thread_pool_executor.rb:334:in `block in create_worker'
